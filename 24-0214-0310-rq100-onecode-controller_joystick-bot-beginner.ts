@@ -969,159 +969,161 @@ function network__CpuCycle_Post__Management_Func() {
 function error_Message_Func(date_time_stamp_as_errorid_in: string, error_message_str_in: string) {
     serial.writeLine(" !!! ERROR !!! " + date_time_stamp_as_errorid_in + " : " + error_message_str_in + " . ")
 }
-radio.onReceivedValue(function (name, value) {
-    if (false) {
-        quest_Note_5.quest_Show_String_For_Note_Big_Fn(
-            "OBSOLETE"
-        )
-        if (!(device_Type_Bot_Bool)) {
-            _codeComment_AsText = "Only place that activates Bot"
-            _codeComment_AsText = "Bot can only be activated by wake-up message from Controller-Remote"
-            device_Type_Bot_Bool = true
-            setup_BotOnly_Fn()
-        } else if (device_Type_Bot_Bool) {
-            quest_Note_3.quest_Show_String_For_Note_Big_Fn(
-                "Forwever: Receive Network Message from 'C'ontroller_Joyustick"
-            )
-            quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                "micro:bit's led_screen is upside_down"
-            )
-            network_Message_Received_Ok_Bool = false
-            if (name == "joystick") {
-                network_Message_Received_Ok_Bool = true
-                controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int = value
-                convert_Controller_Joystick_AngleDegrees_ToMicrobit5x5Screen_Fn(controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int)
-            } else if (name == "gear") {
-                motor_Power_Gear_Number_Int = value
-                if (motor_Power_Gear_Number_Int == 1) {
-                    network_Message_Received_Ok_Bool = true
-                    led.plot(2, 1)
-                } else if (motor_Power_Gear_Number_Int == 2) {
-                    network_Message_Received_Ok_Bool = true
-                    led.plot(2, 3)
-                } else {
-                    quest_Note_1.quest_Show_String_For_Note_Small_Fn(
-                        "Invalid Network Message: 'value'('motor_Power_Gear_Number_Int')"
-                    )
-                    error_Message_Func("24-0213-1730", "abc")
-                }
-            } else {
-                quest_Note_1.quest_Show_String_For_Note_Small_Fn(
-                    "Invalid Network Message: 'name'"
-                )
-                error_Message_Func("24-0213-1731", "abc")
-            }
-            quest_Note_3.quest_Show_String_For_Note_Big_Fn(
-                "Forever: Convert Network Message to Operate 'B'ot"
-            )
-            if (network_Message_Received_Ok_Bool) {
-                if (true) {
-                    if (true) {
-                        quest_Note_2.quest_Show_String_For_Note_Big_Fn(
-                            "Convert Network Message to Operate 'B'ot: "
-                        )
-                        if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 0 || controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 360) {
-                            if (true) {
-                                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                    "Controller_Joystick: East"
-                                )
-                                motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Pos
-                                motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Neg
-                            }
-                        } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 45) {
-                            if (true) {
-                                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                    "Controller_Joystick: North_East"
-                                )
-                                motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Pos
-                                motor_Power_R_Neg100toPos100_Int = motor_Power_ZERO_INT
-                            }
-                        } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 90) {
-                            if (true) {
-                                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                    "Controller_Joystick: North"
-                                )
-                                motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Pos
-                                motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Pos
-                            }
-                        } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 135) {
-                            if (true) {
-                                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                    "Controller_Joystick: North_West"
-                                )
-                                motor_Power_L_Neg100toPos100_Int = motor_Power_ZERO_INT
-                                motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Pos
-                            }
-                        } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 180) {
-                            if (true) {
-                                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                    "Controller_Joystick: West"
-                                )
-                                motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Neg
-                                motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Pos
-                            }
-                        } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 225) {
-                            if (true) {
-                                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                    "Controller_Joystick: South_West"
-                                )
-                                motor_Power_L_Neg100toPos100_Int = motor_Power_ZERO_INT
-                                motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Neg
-                            }
-                        } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 270) {
-                            if (true) {
-                                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                    "Controller_Joystick: South"
-                                )
-                                motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Neg
-                                motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Neg
-                            }
-                        } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 315) {
-                            if (true) {
-                                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                    "Controller_Joystick: South_East"
-                                )
-                                motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Neg
-                                motor_Power_R_Neg100toPos100_Int = motor_Power_ZERO_INT
-                            }
-                        } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == -1) {
-                            quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                                "Controller_Joystick: None = Idle"
-                            )
-                            motor_Power_L_Neg100toPos100_Int = motor_Power_ZERO_INT
-                            motor_Power_R_Neg100toPos100_Int = motor_Power_ZERO_INT
-                        } else {
-                            quest_Note_4.quest_Show_String_For_Note_Small_Fn(
-                                "Invalid 'controller_Joystick_Angle_Degrees_AsIncremented_Int'"
-                            )
-                            error_Message_Func("2024-0212-1730", convertToText(controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int))
-                        }
-                        if (motor_Power_Gear_Number_Int == 1) {
-                            motor_Power_Full_Current_Pos = motor_Power_Gear_01_MAX * 1
-                            motor_Power_Full_Current_Neg = motor_Power_Gear_01_MAX * -1
-                        } else if (motor_Power_Gear_Number_Int == 2) {
-                            motor_Power_Full_Current_Pos = motor_Power_Gear_02_MAX * 1
-                            motor_Power_Full_Current_Neg = motor_Power_Gear_02_MAX * -1
-                        }
-                    }
-                    quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Fn(
-                        quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
-                        motor_Power_L_Neg100toPos100_Int,
-                        motor_Power_R_Neg100toPos100_Int
-                    )
-                    if (true) {
-                        ConvertNetworkMessage_ToOperateBot_PrintDebug_Fn(name, value, motor_Power_L_Neg100toPos100_Int, motor_Power_R_Neg100toPos100_Int)
-                        quest_Note_1.quest_Show_String_For_Note_Small_Fn(
-                            "End of line"
-                        )
-                        serial.writeLine("")
-                    }
-                }
-            }
-            network__CpuCycle_Post__Management_Func()
-        }
-    }
-})
+////jwc o radio.onReceivedValue(function (name, value) {
+////jwc o     if (false) {
+////jwc o         quest_Note_5.quest_Show_String_For_Note_Big_Fn(
+////jwc o             "OBSOLETE"
+////jwc o         )
+////jwc o         if (!(device_Type_Bot_Bool)) {
+////jwc o             _codeComment_AsText = "Only place that activates Bot"
+////jwc o             _codeComment_AsText = "Bot can only be activated by wake-up message from Controller-Remote"
+////jwc o             device_Type_Bot_Bool = true
+////jwc o             setup_BotOnly_Fn()
+////jwc o         } else if (device_Type_Bot_Bool) {
+////jwc o             quest_Note_3.quest_Show_String_For_Note_Big_Fn(
+////jwc o                 "Forwever: Receive Network Message from 'C'ontroller_Joyustick"
+////jwc o             )
+////jwc o             quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                 "micro:bit's led_screen is upside_down"
+////jwc o             )
+////jwc o             network_Message_Received_Ok_Bool = false
+////jwc o             if (name == "joystick") {
+////jwc o                 network_Message_Received_Ok_Bool = true
+////jwc o                 controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int = value
+////jwc o                 convert_Controller_Joystick_AngleDegrees_ToMicrobit5x5Screen_Fn(controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int)
+////jwc o             } else if (name == "gear") {
+////jwc o                 motor_Power_Gear_Number_Int = value
+////jwc o                 if (motor_Power_Gear_Number_Int == 1) {
+////jwc o                     network_Message_Received_Ok_Bool = true
+////jwc o                     led.plot(2, 1)
+////jwc o                 } else if (motor_Power_Gear_Number_Int == 2) {
+////jwc o                     network_Message_Received_Ok_Bool = true
+////jwc o                     led.plot(2, 3)
+////jwc o                 } else {
+////jwc o                     quest_Note_1.quest_Show_String_For_Note_Small_Fn(
+////jwc o                         "Invalid Network Message: 'value'('motor_Power_Gear_Number_Int')"
+////jwc o                     )
+////jwc o                     error_Message_Func("24-0213-1730", "abc")
+////jwc o                 }
+////jwc o             } else {
+////jwc o                 quest_Note_1.quest_Show_String_For_Note_Small_Fn(
+////jwc o                     "Invalid Network Message: 'name'"
+////jwc o                 )
+////jwc o                 error_Message_Func("24-0213-1731", "abc")
+////jwc o             }
+////jwc o             quest_Note_3.quest_Show_String_For_Note_Big_Fn(
+////jwc o                 "Forever: Convert Network Message to Operate 'B'ot"
+////jwc o             )
+////jwc o             if (network_Message_Received_Ok_Bool) {
+////jwc o                 if (true) {
+////jwc o                     if (true) {
+////jwc o                         quest_Note_2.quest_Show_String_For_Note_Big_Fn(
+////jwc o                             "Convert Network Message to Operate 'B'ot: "
+////jwc o                         )
+////jwc o                         if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 0 || controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 360) {
+////jwc o                             if (true) {
+////jwc o                                 quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                     "Controller_Joystick: East"
+////jwc o                                 )
+////jwc o                                 motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Pos
+////jwc o                                 motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Neg
+////jwc o                             }
+////jwc o                         } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 45) {
+////jwc o                             if (true) {
+////jwc o                                 quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                     "Controller_Joystick: North_East"
+////jwc o                                 )
+////jwc o                                 motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Pos
+////jwc o                                 motor_Power_R_Neg100toPos100_Int = motor_Power_ZERO_INT
+////jwc o                             }
+////jwc o                         } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 90) {
+////jwc o                             if (true) {
+////jwc o                                 quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                     "Controller_Joystick: North"
+////jwc o                                 )
+////jwc o                                 motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Pos
+////jwc o                                 motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Pos
+////jwc o                             }
+////jwc o                         } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 135) {
+////jwc o                             if (true) {
+////jwc o                                 quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                     "Controller_Joystick: North_West"
+////jwc o                                 )
+////jwc o                                 motor_Power_L_Neg100toPos100_Int = motor_Power_ZERO_INT
+////jwc o                                 motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Pos
+////jwc o                             }
+////jwc o                         } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 180) {
+////jwc o                             if (true) {
+////jwc o                                 quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                     "Controller_Joystick: West"
+////jwc o                                 )
+////jwc o                                 motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Neg
+////jwc o                                 motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Pos
+////jwc o                             }
+////jwc o                         } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 225) {
+////jwc o                             if (true) {
+////jwc o                                 quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                     "Controller_Joystick: South_West"
+////jwc o                                 )
+////jwc o                                 motor_Power_L_Neg100toPos100_Int = motor_Power_ZERO_INT
+////jwc o                                 motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Neg
+////jwc o                             }
+////jwc o                         } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 270) {
+////jwc o                             if (true) {
+////jwc o                                 quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                     "Controller_Joystick: South"
+////jwc o                                 )
+////jwc o                                 motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Neg
+////jwc o                                 motor_Power_R_Neg100toPos100_Int = motor_Power_Full_Current_Neg
+////jwc o                             }
+////jwc o                         } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 315) {
+////jwc o                             if (true) {
+////jwc o                                 quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                     "Controller_Joystick: South_East"
+////jwc o                                 )
+////jwc o                                 motor_Power_L_Neg100toPos100_Int = motor_Power_Full_Current_Neg
+////jwc o                                 motor_Power_R_Neg100toPos100_Int = motor_Power_ZERO_INT
+////jwc o                             }
+////jwc o                         } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == -1) {
+////jwc o                             quest_Note_2.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                 "Controller_Joystick: None = Idle"
+////jwc o                             )
+////jwc o                             motor_Power_L_Neg100toPos100_Int = motor_Power_ZERO_INT
+////jwc o                             motor_Power_R_Neg100toPos100_Int = motor_Power_ZERO_INT
+////jwc o                         } else {
+////jwc o                             quest_Note_4.quest_Show_String_For_Note_Small_Fn(
+////jwc o                                 "Invalid 'controller_Joystick_Angle_Degrees_AsIncremented_Int'"
+////jwc o                             )
+////jwc o                             error_Message_Func("2024-0212-1730", convertToText(controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int))
+////jwc o                         }
+////jwc o                         if (motor_Power_Gear_Number_Int == 1) {
+////jwc o                             motor_Power_Full_Current_Pos = motor_Power_Gear_01_MAX * 1
+////jwc o                             motor_Power_Full_Current_Neg = motor_Power_Gear_01_MAX * -1
+////jwc o                         } else if (motor_Power_Gear_Number_Int == 2) {
+////jwc o                             motor_Power_Full_Current_Pos = motor_Power_Gear_02_MAX * 1
+////jwc o                             motor_Power_Full_Current_Neg = motor_Power_Gear_02_MAX * -1
+////jwc o                         }
+////jwc o                     }
+////jwc o                     quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Fn(
+////jwc o                         quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
+////jwc o                         motor_Power_L_Neg100toPos100_Int,
+////jwc o                         motor_Power_R_Neg100toPos100_Int
+////jwc o                     )
+////jwc o                     if (true) {
+////jwc o                         ConvertNetworkMessage_ToOperateBot_PrintDebug_Fn(name, value, motor_Power_L_Neg100toPos100_Int, motor_Power_R_Neg100toPos100_Int)
+////jwc o                         quest_Note_1.quest_Show_String_For_Note_Small_Fn(
+////jwc o                             "End of line"
+////jwc o                         )
+////jwc o                         serial.writeLine("")
+////jwc o                     }
+////jwc o                 }
+////jwc o             }
+////jwc o             network__CpuCycle_Post__Management_Func()
+////jwc o         }
+////jwc o     }
+////jwc o })
+////jwc o 
+
 // 'deviceType_Bot_Bool' vs. 'deviceType_Controller_Bool'
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
 
